@@ -75,12 +75,14 @@ let a=document.querySelector(".dicy");
 let db=document.querySelector(".dice");
 var audio=new Audio("audio/roll.wav");
 var coll=new Audio("audio/col.wav");
-
+var mov=new Audio("audio/mov.mp3");
+var start=new Audio("audio/st.mp3");
 a.onclick=function(e){
     e.preventDefault();
     movedice();
 };
 function movedice(){
+    start.pause();
     let x = Math.floor((Math.random() * 6) + 1);
     let purl="url('imgs/"+x.toString() + ".png')";
     a.style.backgroundImage=purl; 
@@ -109,6 +111,7 @@ function checkturn(y)
             e.preventDefault();
             if(turn[t][j].state==-1 && y==6)
             {
+                mov.play();
                 box[turn[t][j].start].appendChild(turn[t][j]);
                 turn[t][j].state=turn[t][j].start;
                 for(let u=1;u<5;u++)
@@ -123,6 +126,7 @@ function checkturn(y)
                 checkcoll(t,j);
                 checkhr(t,j);
                 winner(t,j,y);
+                mov.play();
                 box[turn[t][j].state].appendChild(turn[t][j]);
                 for(let v=1;v<5;v++)
                 {
@@ -135,8 +139,8 @@ function checkturn(y)
                 checkst(t,j);
                 checkcoll(t,j);
                 checkhr(t,j);
-                checkcoll(t,j);
                 winner(t,j,y);
+                mov.play();
                 box[turn[t][j].state].appendChild(turn[t][j]);
                 if(ex!=1)
                     t++;
@@ -225,6 +229,7 @@ function winner(t5,j5,y8)
         if(turn[t5][j5].state==66)
         {
             turn[t5][j5].disabled=true;
+            turn[t5][j5].state=turn[t5][j5].state-y8;
         }
     }
     else if(t5==1)
@@ -236,6 +241,7 @@ function winner(t5,j5,y8)
         if(turn[t5][j5].state==76)
         {
             turn[t5][j5].disabled=true;
+            turn[t5][j5].state=turn[t5][j5].state-y8;
         }
     }
     else if(t5==2)
@@ -247,6 +253,7 @@ function winner(t5,j5,y8)
         if(turn[t5][j5].state==86)
         {
             turn[t5][j5].disabled=true;
+            turn[t5][j5].state=turn[t5][j5].state-y8;
         }
     }
     else if(t5==3)
@@ -258,6 +265,7 @@ function winner(t5,j5,y8)
         if(turn[t5][j5].state==96)
         {
             turn[t5][j5].disabled=true;
+            turn[t5][j5].state=turn[t5][j5].state-y8;
         }
     }
 }

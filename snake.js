@@ -73,6 +73,7 @@ for(i=1;i<5;i++)
 }
 let a=document.querySelector(".dicy");
 let db=document.querySelector(".dice");
+let win=document.querySelector(".win");
 var audio=new Audio("audio/roll.wav");
 var coll=new Audio("audio/col.wav");
 var mov=new Audio("audio/mov.mp3");
@@ -82,10 +83,11 @@ a.onclick=function(e){
     movedice();
 };
 function movedice(){
+    
     start.pause();
     let x = Math.floor((Math.random() * 6) + 1);
     let purl="url('imgs/"+x.toString() + ".png')";
-    a.style.backgroundImage=purl; 
+    a.style.backgroundImage=purl;    
     audio.play();
     setpi(x);
 }
@@ -99,11 +101,13 @@ function setpi(y)
     }
     else{
         checkturn(y); 
-    }  
-    winnner();  
+        
+    }      
+      
 } 
 function checkturn(y)
 {
+    ex=0;
     for(let j=1;j<5;j++)
     {
         turn[t][j].onclick = (e)=>
@@ -121,6 +125,7 @@ function checkturn(y)
             }
             else if(turn[t][j].state!=-1 && y==6)
             {
+
                 turn[t][j].state+=y;
                 checkst(t,j);
                 checkcoll(t,j);
@@ -132,24 +137,27 @@ function checkturn(y)
                 {
                         turn[t][v].onclick=false;
                 }
+                winnner();
             }
             else if(turn[t][j].state!=-1 && y!=6)
             {
                 turn[t][j].state+=y;
+                let bl=turn[t][j].state;
                 checkst(t,j);
                 checkcoll(t,j);
                 checkhr(t,j);
-                winner(t,j,y);
+                winner(t,j,y,bl);
                 mov.play();
                 box[turn[t][j].state].appendChild(turn[t][j]);
                 if(ex!=1)
                     t++;
                 checkt(t);
+                winnner();
             }
         }
-    }
-    if(ex==1)
-        ex=0; 
+        
+    } 
+    
 }
 function checkt(t1)
 {
@@ -158,19 +166,19 @@ function checkt(t1)
 }    
 function checkst(t2,j2)
 {
-    if(turn[t2][j2].state>51 && t2!=3)
+    if(turn[t2][j2].state>51 &&turn[t2][j2].flag==0 && t2!=3)
     {
         turn[t2][j2].state=turn[t2][j2].state-51-1;
         turn[t2][j2].flag=1;
-    } 
-    else if(t2==3)
+    }
+    else if(t2==3 && turn[t2][j2].flag==0)
     {
         if(turn[t2][j2].state>50)
         {
             turn[t2][j2].state=(turn[t2][j2].state-50)+90;
             turn[t2][j2].flag=1;
         }
-    }
+    } 
 } 
 function checkcoll(t1,j1)
 {
@@ -197,8 +205,8 @@ function checkhr(t5,j5)
     {
         if(turn[t5][j5].state>11 && turn[t5][j5].flag==1)
         {
-            turn[t5][j5].state=turn[t5][j5].state-11+60;
-            turn[t5][j5].flag=0;
+            turn[t5][j5].state=(turn[t5][j5].state-11)+60;
+            turn[t5][j5].flag=2;
         }
     }
     else if(t5==1)
@@ -206,7 +214,7 @@ function checkhr(t5,j5)
         if(turn[t5][j5].state>24 && turn[t5][j5].flag==1)
         {
             turn[t5][j5].state=(turn[t5][j5].state-24)+70;
-            turn[t5][j5].flag=0;
+            turn[t5][j5].flag=2;
         }
     }
     else if(t5==2)
@@ -214,7 +222,7 @@ function checkhr(t5,j5)
         if(turn[t5][j5].state>37 && turn[t5][j5].flag==1)
         {
             turn[t5][j5].state=(turn[t5][j5].state-37)+80;
-            turn[t5][j5].flag=0;
+            turn[t5][j5].flag=2;
         }
     }
 }
@@ -226,10 +234,9 @@ function winner(t5,j5,y8)
         {
             turn[t5][j5].state=turn[t5][j5].state-y8;
         }
-        if(turn[t5][j5].state==66)
+        else if(turn[t5][j5].state==66)
         {
             turn[t5][j5].disabled=true;
-            turn[t5][j5].state=turn[t5][j5].state-y8;
         }
     }
     else if(t5==1)
@@ -238,10 +245,9 @@ function winner(t5,j5,y8)
         {
             turn[t5][j5].state=turn[t5][j5].state-y8;
         }
-        if(turn[t5][j5].state==76)
+        else if(turn[t5][j5].state==76)
         {
             turn[t5][j5].disabled=true;
-            turn[t5][j5].state=turn[t5][j5].state-y8;
         }
     }
     else if(t5==2)
@@ -253,30 +259,49 @@ function winner(t5,j5,y8)
         if(turn[t5][j5].state==86)
         {
             turn[t5][j5].disabled=true;
-            turn[t5][j5].state=turn[t5][j5].state-y8;
         }
     }
     else if(t5==3)
     {
         if(turn[t5][j5].state>96)
         {
-            turn[t5][j5].state=turn[t5][j5].state-y8;
+            turn[t5][j5].state = turn[t5][j5].state-y8;
         }
         if(turn[t5][j5].state==96)
         {
+            
             turn[t5][j5].disabled=true;
-            turn[t5][j5].state=turn[t5][j5].state-y8;
         }
     }
 }
 function winnner()
 {
-    if(turn[0][1].disabled==true && turn[0][2].disabled==true && turn[0][3].disabled==true && turn[0][4].disabled==true)
+    if(turn[0][1].state==66 && turn[0][2].state==66 && turn[0][3].state==66 && turn[0][4].state==66)
+    {
         window.alert(turn[0][1].name+" is the winner!!!!");
-    if(turn[1][1].disabled==true && turn[1][2].disabled==true && turn[1][3].disabled==true && turn[1][4].disabled==true)
+        t++;
+        if(t==4)
+            t=0;
+    }
+    else if(turn[1][1].disabled==true && turn[1][2].disabled==true && turn[1][3].disabled==true && turn[1][4].disabled==true)
+    {
         window.alert(turn[1][1].name+" is the winner!!!!");
-    if(turn[2][1].disabled==true && turn[2][2].disabled==true && turn[2][3].disabled==true && turn[2][4].disabled==true)
+        t++;
+        if(t==4)
+            t=0;
+    }
+    else if(turn[2][1].disabled==true && turn[2][2].disabled==true && turn[2][3].disabled==true && turn[2][4].disabled==true)
+    {
         window.alert(turn[2][1].name+" is the winner!!!!");
-    if(turn[3][1].disabled==true && turn[3][2].disabled==true && turn[3][3].disabled==true && turn[3][4].disabled==true)
+        t++;
+        if(t==4)
+            t=0;
+    }
+    else if(turn[3][1].disabled==true && turn[3][2].disabled==true && turn[3][3].disabled==true && turn[3][4].disabled==true)
+    {
         window.alert(turn[3][1].name+" is the winner!!!!");
+        t++;
+        if(t==4)
+            t=0;
+    }
 }

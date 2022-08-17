@@ -79,7 +79,7 @@ var coll=new Audio("audio/col.wav");
 var mov=new Audio("audio/mov.mp3");
 var start=new Audio("audio/st.mp3");
 var hme=new Audio("audio/hme.wav");
-var www=new Audio("audio/www.wav");
+var www=new Audio("audio/www.mp3");
 a.onclick=function(e){
     e.preventDefault();
     movedice();
@@ -245,8 +245,8 @@ function winner(t5,j5,y8)
         {
             turn[t5][j5].flag=3;
             turn[t5][j5].disabled=true;
-            window.alert(turn[t5][j5].name+j5+" is in home");
             hme.play();
+            window.alert(turn[t5][j5].name+j5+" is in home");
         }
     }
     else if(t5==1)
@@ -260,8 +260,8 @@ function winner(t5,j5,y8)
         {
             turn[t5][j5].flag=3;
             turn[t5][j5].disabled=true;
-            window.alert(turn[t5][j5].name+j5+" is in home");
             hme.play();
+            window.alert(turn[t5][j5].name+j5+" is in home");
         }
     }
     else if(t5==2)
@@ -274,8 +274,9 @@ function winner(t5,j5,y8)
         {
             turn[t5][j5].flag=3;
             turn[t5][j5].disabled=true;
-            window.alert(turn[t5][j5].name+j5+" is in home");
             hme.play();
+            window.alert(turn[t5][j5].name+j5+" is in home");
+            
         }
     }
     else if(t5==3)
@@ -288,8 +289,8 @@ function winner(t5,j5,y8)
         {
             turn[t5][j5].flag=3;
             turn[t5][j5].disabled=true;
-            window.alert(turn[t5][j5].name+j5+" is in home");
             hme.play();
+            window.alert(turn[t5][j5].name+j5+" is in home");
         }
     }
 }
@@ -297,32 +298,32 @@ function winnner()
 {
     if(turn[0][1].state==66 && turn[0][2].state==66 && turn[0][3].state==66 && turn[0][4].state==66)
     {
-        window.alert(turn[0][1].name+" is the winner!!!!");
         www.play();
+        window.alert(turn[0][1].name+" is the winner!!!!");
         t++;
         if(t==4)
             t=0;
     }
     else if(turn[1][1].disabled==true && turn[1][2].disabled==true && turn[1][3].disabled==true && turn[1][4].disabled==true)
     {
-        window.alert(turn[1][1].name+" is the winner!!!!");
         www.play();
+        window.alert(turn[1][1].name+" is the winner!!!!");
         t++;
         if(t==4)
             t=0;
     }
     else if(turn[2][1].disabled==true && turn[2][2].disabled==true && turn[2][3].disabled==true && turn[2][4].disabled==true)
     {
-        window.alert(turn[2][1].name+" is the winner!!!!");
         www.play();
+        window.alert(turn[2][1].name+" is the winner!!!!");
         t++;
         if(t==4)
             t=0;
     }
     else if(turn[3][1].disabled==true && turn[3][2].disabled==true && turn[3][3].disabled==true && turn[3][4].disabled==true)
     {
-        window.alert(turn[3][1].name+" is the winner!!!!");
         www.play();
+        window.alert(turn[3][1].name+" is the winner!!!!");
         t++;
         if(t==4)
             t=0;

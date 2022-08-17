@@ -78,6 +78,8 @@ var audio=new Audio("audio/roll.wav");
 var coll=new Audio("audio/col.wav");
 var mov=new Audio("audio/mov.mp3");
 var start=new Audio("audio/st.mp3");
+var hme=new Audio("audio/hme.wav");
+var www=new Audio("audio/www.wav");
 a.onclick=function(e){
     e.preventDefault();
     movedice();
@@ -95,6 +97,11 @@ function setpi(y)
 {
     db.style.backgroundColor=turn[t][4].name;
     if(turn[t][1].state==-1 && turn[t][2].state==-1 && turn[t][3].state==-1 && turn[t][4].state==-1 && y!=6)
+    {
+                t++;
+                checkt(t);
+    }
+    else if(turn[t][1].flag==3 && turn[t][2].flag==3 && turn[t][3].flag==3 && turn[t][4].flag==3)
     {
                 t++;
                 checkt(t);
@@ -236,18 +243,25 @@ function winner(t5,j5,y8)
         }
         else if(turn[t5][j5].state==66)
         {
+            turn[t5][j5].flag=3;
             turn[t5][j5].disabled=true;
+            window.alert(turn[t5][j5].name+j5+" is in home");
+            hme.play();
         }
     }
     else if(t5==1)
     {
         if(turn[t5][j5].state>76)
         {
+            turn[t5][j5].flag=3;
             turn[t5][j5].state=turn[t5][j5].state-y8;
         }
         else if(turn[t5][j5].state==76)
         {
+            turn[t5][j5].flag=3;
             turn[t5][j5].disabled=true;
+            window.alert(turn[t5][j5].name+j5+" is in home");
+            hme.play();
         }
     }
     else if(t5==2)
@@ -258,7 +272,10 @@ function winner(t5,j5,y8)
         }
         if(turn[t5][j5].state==86)
         {
+            turn[t5][j5].flag=3;
             turn[t5][j5].disabled=true;
+            window.alert(turn[t5][j5].name+j5+" is in home");
+            hme.play();
         }
     }
     else if(t5==3)
@@ -269,8 +286,10 @@ function winner(t5,j5,y8)
         }
         if(turn[t5][j5].state==96)
         {
-            
+            turn[t5][j5].flag=3;
             turn[t5][j5].disabled=true;
+            window.alert(turn[t5][j5].name+j5+" is in home");
+            hme.play();
         }
     }
 }
@@ -279,6 +298,7 @@ function winnner()
     if(turn[0][1].state==66 && turn[0][2].state==66 && turn[0][3].state==66 && turn[0][4].state==66)
     {
         window.alert(turn[0][1].name+" is the winner!!!!");
+        www.play();
         t++;
         if(t==4)
             t=0;
@@ -286,6 +306,7 @@ function winnner()
     else if(turn[1][1].disabled==true && turn[1][2].disabled==true && turn[1][3].disabled==true && turn[1][4].disabled==true)
     {
         window.alert(turn[1][1].name+" is the winner!!!!");
+        www.play();
         t++;
         if(t==4)
             t=0;
@@ -293,6 +314,7 @@ function winnner()
     else if(turn[2][1].disabled==true && turn[2][2].disabled==true && turn[2][3].disabled==true && turn[2][4].disabled==true)
     {
         window.alert(turn[2][1].name+" is the winner!!!!");
+        www.play();
         t++;
         if(t==4)
             t=0;
@@ -300,6 +322,7 @@ function winnner()
     else if(turn[3][1].disabled==true && turn[3][2].disabled==true && turn[3][3].disabled==true && turn[3][4].disabled==true)
     {
         window.alert(turn[3][1].name+" is the winner!!!!");
+        www.play();
         t++;
         if(t==4)
             t=0;

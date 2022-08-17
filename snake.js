@@ -2,6 +2,7 @@ let box=[],r=[],y=[],g=[],b=[];
 let turn=[r,g,b,y];
 let t=0;
 let ex=0;
+let wnct=0;
 for(let i=0;i<52;i++)
 {
     box[i]=document.querySelector("#c"+i.toString());
@@ -80,6 +81,7 @@ var mov=new Audio("audio/mov.mp3");
 var start=new Audio("audio/st.mp3");
 var hme=new Audio("audio/hme.wav");
 var www=new Audio("audio/www.mp3");
+var gmovr=new Audio("audio/ovr.mp3");
 a.onclick=function(e){
     e.preventDefault();
     movedice();
@@ -299,7 +301,8 @@ function winnner()
     if(turn[0][1].state==66 && turn[0][2].state==66 && turn[0][3].state==66 && turn[0][4].state==66)
     {
         www.play();
-        window.alert(turn[0][1].name+" is the winner!!!!");
+        wnct++;
+        window.alert(turn[0][1].name+" comes at "+wnct+"rd place.");
         t++;
         if(t==4)
             t=0;
@@ -307,7 +310,8 @@ function winnner()
     else if(turn[1][1].disabled==true && turn[1][2].disabled==true && turn[1][3].disabled==true && turn[1][4].disabled==true)
     {
         www.play();
-        window.alert(turn[1][1].name+" is the winner!!!!");
+        wnct++;
+        window.alert(turn[1][1].name+" comes at "+wnct+"rd place.");
         t++;
         if(t==4)
             t=0;
@@ -315,7 +319,8 @@ function winnner()
     else if(turn[2][1].disabled==true && turn[2][2].disabled==true && turn[2][3].disabled==true && turn[2][4].disabled==true)
     {
         www.play();
-        window.alert(turn[2][1].name+" is the winner!!!!");
+        wnct++;
+        window.alert(turn[2][1].name+" comes at "+wnct+"rd place.");
         t++;
         if(t==4)
             t=0;
@@ -323,9 +328,18 @@ function winnner()
     else if(turn[3][1].disabled==true && turn[3][2].disabled==true && turn[3][3].disabled==true && turn[3][4].disabled==true)
     {
         www.play();
-        window.alert(turn[3][1].name+" is the winner!!!!");
+        wnct++;
+        window.alert(turn[3][1].name+" comes at "+wnct+"th place.");
         t++;
         if(t==4)
             t=0;
+    }
+    if(wnct==4)
+    {
+        gmovr.play();
+        window.alert("Game over!!!!!");
+        var val=confirm("Do You want to play again?????");
+        if(val==true)
+            location.reload();
     }
 }

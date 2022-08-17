@@ -201,6 +201,7 @@ function checkcoll(t1,j1)
                 {
                     (turn[k][l].h).appendChild(turn[k][l]);
                     turn[k][l].state=-1;
+                    turn[k][l].flag=0;
                     ex=1;
                     coll.play();
                 }

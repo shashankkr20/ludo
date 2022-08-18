@@ -282,6 +282,7 @@ function winner(t5,j5,y8)
             turn[t5][j5].flag=3;
             turn[t5][j5].disabled=true;
             hme.play();
+            ex=1;
             window.alert(turn[t5][j5].name+j5+" is in home");
         }
     }
@@ -297,6 +298,7 @@ function winner(t5,j5,y8)
             turn[t5][j5].flag=3;
             turn[t5][j5].disabled=true;
             hme.play();
+            ex=1;
             window.alert(turn[t5][j5].name+j5+" is in home");
         }
     }
@@ -311,6 +313,7 @@ function winner(t5,j5,y8)
             turn[t5][j5].flag=3;
             turn[t5][j5].disabled=true;
             hme.play();
+            ex=1;
             window.alert(turn[t5][j5].name+j5+" is in home");
             
         }
@@ -326,6 +329,7 @@ function winner(t5,j5,y8)
             turn[t5][j5].flag=3;
             turn[t5][j5].disabled=true;
             hme.play();
+            ex=1;
             window.alert(turn[t5][j5].name+j5+" is in home");
         }
     }

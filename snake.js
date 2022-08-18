@@ -3,6 +3,7 @@ let turn=[r,g,b,y];
 let t=0;
 let ex=0;
 let wnct=0;
+let zi=5;
 for(let i=0;i<52;i++)
 {
     box[i]=document.querySelector("#c"+i.toString());
@@ -48,24 +49,28 @@ for(i=91,o=1;i<97,o<7;i++,o++)
 for(i=1;i<5;i++)
 {
     r[i]=document.querySelector(".r"+i.toString());
+    r[i].pic=document.querySelector("#rp"+i.toString());
     r[i].state=-1;
     r[i].flag=0;
     r[i].name="red";
     r[i].h=document.querySelector(".rk"+i.toString())
     r[i].start=13;
     y[i]=document.querySelector(".y"+i.toString());
+    y[i].pic=document.querySelector("#yp"+i.toString());
     y[i].state=-1;
     y[i].flag=0;
     y[i].start=0;
     y[i].name="yellow";
     y[i].h=document.querySelector(".yk"+i.toString());
     b[i]=document.querySelector(".b"+i.toString());
+    b[i].pic=document.querySelector("#bp"+i.toString());
     b[i].state=-1;
     b[i].name="blue";
     b[i].h=document.querySelector(".bk"+i.toString());
     b[i].start=39;
     b[i].flag=0;
     g[i]=document.querySelector(".g"+i.toString());
+    g[i].pic=document.querySelector("#gp"+i.toString());
     g[i].state=-1;
     g[i].name="green";
     g[i].h=document.querySelector(".gk"+i.toString());
@@ -129,7 +134,10 @@ function checkturn(y)
                 turn[t][j].state=turn[t][j].start;
                 for(let u=1;u<5;u++)
                 {
-                        turn[t][u].onclick=false;
+                        turn[0][u].onclick=false;
+                        turn[1][u].onclick=false;
+                        turn[2][u].onclick=false;
+                        turn[3][u].onclick=false;
                 }
             }
             else if(turn[t][j].state!=-1 && y==6)
@@ -144,7 +152,10 @@ function checkturn(y)
                 box[turn[t][j].state].appendChild(turn[t][j]);
                 for(let v=1;v<5;v++)
                 {
-                        turn[t][v].onclick=false;
+                        turn[0][v].onclick=false;
+                        turn[1][v].onclick=false;
+                        turn[2][v].onclick=false;
+                        turn[3][v].onclick=false;
                 }
                 winnner();
             }
@@ -158,6 +169,13 @@ function checkturn(y)
                 winner(t,j,y,bl);
                 mov.play();
                 box[turn[t][j].state].appendChild(turn[t][j]);
+                for(let v=1;v<5;v++)
+                {
+                        turn[0][v].onclick=false;
+                        turn[1][v].onclick=false;
+                        turn[2][v].onclick=false;
+                        turn[3][v].onclick=false;
+                }
                 if(ex!=1)
                     t++;
                 checkt(t);
@@ -204,6 +222,21 @@ function checkcoll(t1,j1)
                     turn[k][l].flag=0;
                     ex=1;
                     coll.play();
+                }
+            }
+        }
+    }
+    else if(turn[t1][j1].state==0 || turn[t1][j1].state==13 || turn[t1][j1].state==26 || turn[t1][j1].state==39 || turn[t1][j1].state==47 || turn[t1][j1].state==8 || turn[t1][j1].state==21 || turn[t1][j1].state==34)
+    {
+        for(let k=0;k<4;k++)
+        {
+            for(let l=1;l<5;l++)
+            {
+                console.log(5);
+                if(turn[t1][j1].state==turn[k][l].state && t1!=k)
+                {
+                    turn[t1][j1].pic.style.zIndex=zi;
+                    zi++;
                 }
             }
         }

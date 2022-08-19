@@ -87,10 +87,10 @@ var start=new Audio("audio/st.mp3");
 var hme=new Audio("audio/hme.wav");
 var www=new Audio("audio/www.mp3");
 var gmovr=new Audio("audio/ovr.mp3");
-box[23].appendChild(r[1]);
-r[1].state=23;
-box[26].appendChild(g[1]);
-g[1].state=26;
+// box[23].appendChild(r[1]);
+// r[1].state=23;
+// box[26].appendChild(g[1]);
+// g[1].state=26;
 a.onclick=function(e){
     e.preventDefault();
     movedice();

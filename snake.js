@@ -87,6 +87,10 @@ var start=new Audio("audio/st.mp3");
 var hme=new Audio("audio/hme.wav");
 var www=new Audio("audio/www.mp3");
 var gmovr=new Audio("audio/ovr.mp3");
+box[23].appendChild(r[1]);
+r[1].state=23;
+box[26].appendChild(g[1]);
+g[1].state=26;
 a.onclick=function(e){
     e.preventDefault();
     movedice();
@@ -102,6 +106,7 @@ function movedice(){
 }
 function setpi(y)
 {
+    turn[t][1].pic.style.zIndex=turn[t][2].pic.style.zIndex=turn[t][3].pic.style.zIndex=turn[t][4].pic.style.zIndex=zi++;
     db.style.backgroundColor=turn[t][4].name;
     if(turn[t][1].state==-1 && turn[t][2].state==-1 && turn[t][3].state==-1 && turn[t][4].state==-1 && y!=6)
     {
@@ -162,11 +167,10 @@ function checkturn(y)
             else if(turn[t][j].state!=-1 && y!=6)
             {
                 turn[t][j].state+=y;
-                let bl=turn[t][j].state;
                 checkst(t,j);
                 checkcoll(t,j);
                 checkhr(t,j);
-                winner(t,j,y,bl);
+                winner(t,j,y);
                 mov.play();
                 box[turn[t][j].state].appendChild(turn[t][j]);
                 for(let v=1;v<5;v++)
@@ -222,21 +226,6 @@ function checkcoll(t1,j1)
                     turn[k][l].flag=0;
                     ex=1;
                     coll.play();
-                }
-            }
-        }
-    }
-    else if(turn[t1][j1].state==0 || turn[t1][j1].state==13 || turn[t1][j1].state==26 || turn[t1][j1].state==39 || turn[t1][j1].state==47 || turn[t1][j1].state==8 || turn[t1][j1].state==21 || turn[t1][j1].state==34)
-    {
-        for(let k=0;k<4;k++)
-        {
-            for(let l=1;l<5;l++)
-            {
-                console.log(5);
-                if(turn[t1][j1].state==turn[k][l].state && t1!=k)
-                {
-                    turn[t1][j1].pic.style.zIndex=zi;
-                    zi++;
                 }
             }
         }

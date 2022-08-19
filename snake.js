@@ -361,7 +361,7 @@ function winnner()
         if(t==4)
             t=0;
     }
-    if(wnct==4)
+    if(wnct==3)
     {
         gmovr.play();
         window.alert("Game over!!!!!");

@@ -200,3 +200,17 @@ p{
     background-size: 50px;
     overflow: hidden;
    }
+   .ins{
+    display: flex;
+    border:2px solid violet;
+    width: fit-content;
+    background-color: blanchedalmond;
+    margin-top: 10px;
+   }
+   h3{
+    color: brown;
+    text-decoration:underline;
+   }
+   li{
+    color: green;
+   }

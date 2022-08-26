@@ -119,8 +119,8 @@ function setpi(y)
                 checkt(t);
     }
     else{
+        a.disabled=true;
         checkturn(y); 
-        
     }      
       
 } 
@@ -144,6 +144,7 @@ function checkturn(y)
                         turn[2][u].onclick=false;
                         turn[3][u].onclick=false;
                 }
+                a.disabled=false;
             }
             else if(turn[t][j].state!=-1 && y==6)
             {
@@ -163,6 +164,7 @@ function checkturn(y)
                         turn[3][v].onclick=false;
                 }
                 winnner();
+                a.disabled=false;
             }
             else if(turn[t][j].state!=-1 && y!=6)
             {
@@ -184,6 +186,7 @@ function checkturn(y)
                     t++;
                 checkt(t);
                 winnner();
+                a.disabled=false;
             }
         }
         

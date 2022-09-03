@@ -3,10 +3,11 @@
     height: 830px;
     /* background-color: black; */
     border: 10px solid black;
-}
-body{
     touch-action: manipulation;
 }
+/* body{
+    touch-action: manipulation;
+} */
 .obox{
     display: flex;
     /* flex-direction: column; */

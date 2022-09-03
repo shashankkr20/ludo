@@ -4,6 +4,9 @@ let t=0;
 let ex=0;
 let wnct=0;
 let zi=5;
+let bl=-1;
+let plse=[];
+let block=[];
 for(let i=0;i<52;i++)
 {
     box[i]=document.querySelector("#c"+i.toString());
@@ -77,6 +80,10 @@ for(i=1;i<5;i++)
     g[i].start=26;
     g[i].flag=0;
 }
+for(let i=0;i<4;i++)
+{
+    plse[i]=document.querySelector(".plse"+i);
+}
 let a=document.querySelector(".dicy");
 let db=document.querySelector(".dice");
 let win=document.querySelector(".win");
@@ -87,10 +94,25 @@ var start=new Audio("audio/st.mp3");
 var hme=new Audio("audio/hme.wav");
 var www=new Audio("audio/www.mp3");
 var gmovr=new Audio("audio/ovr.mp3");
+let plch=document.querySelector(".plchbtn");
+let ddm=document.querySelector(".plct");
 // box[23].appendChild(r[1]);
 // r[1].state=23;
 // box[26].appendChild(g[1]);
 // g[1].state=26;
+plch.onclick=function(e){
+    e.preventDefault();
+    var cm=parseInt(ddm.value);
+    for(let i=0;i<4;i++)
+    {
+        if(plse[i].checked==false && cm)
+        {
+            block[++bl]=plse[i].value;
+            cm--;
+        }
+    }
+    plch.disabled=true;
+};
 a.onclick=function(e){
     e.preventDefault();
     movedice();
@@ -107,6 +129,12 @@ function movedice(){
 function setpi(y)
 {
     turn[t][1].pic.style.zIndex=turn[t][2].pic.style.zIndex=turn[t][3].pic.style.zIndex=turn[t][4].pic.style.zIndex=zi++;
+    for(i=0;i<4;i++)
+    {
+        if(t==block[i])    
+        t++;
+        checkt(t);
+    }
     db.style.backgroundColor=turn[t][4].name;
     if(turn[t][1].state==-1 && turn[t][2].state==-1 && turn[t][3].state==-1 && turn[t][4].state==-1 && y!=6)
     {
